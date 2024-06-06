@@ -7,6 +7,13 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 <body class="bg-gray-100">
+    
+    <?php
+
+    include_once('config/database.php');
+    
+    ?>
+
     <div class="container mx-auto p-4">
         <h1 class="text-2xl font-bold mb-4">Agenda Telefônica</h1>
         <div class="bg-white shadow-md rounded my-6 overflow-x-auto">
@@ -20,24 +27,31 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="border-b">
-                         <td class="py-2 px-4"><img class="w-20 h-20 object-cover" src="https://via.placeholder.com/150" alt="João Silva"></td>
-                        <td class="py-2 px-4 text-sm text-gray-700">João Silva</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">joao.silva@example.com</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">(11) 1234-5678</td>
-                    </tr>
-                    <tr class="border-b bg-gray-50">
-                        <td class="py-2 px-4"><img class="w-20 h-20 object-cover" src="https://via.placeholder.com/150" alt="Maria Oliveira"></td>
-                        <td class="py-2 px-4 text-sm text-gray-700">Maria Oliveira</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">maria.oliveira@example.com</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">(21) 9876-5432</td>
-                    </tr>
-                    <tr class="border-b">
-                        <td class="py-2 px-4"><img class="w-20 h-20 object-cover" src="https://via.placeholder.com/150" alt="Carlos Souza"></td>
-                        <td class="py-2 px-4 text-sm text-gray-700">Carlos Souza</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">carlos.souza@example.com</td>
-                        <td class="py-2 px-4 text-sm text-gray-700">(31) 2468-1357</td>
-                    </tr>
+                <?php
+
+                $rs = $con->query("SELECT * FROM agenda");
+                while($row = $rs->fetch(PDO::FETCH_OBJ)){
+                
+                    echo '
+                    <div class="col-lg-4 col-md-6 col-sm-6">
+                        <div class="prjoduct__item">
+                            <div class="product__item__pic set-bg" data-setbg=" '. $row->cover .'">
+                                <div class="ep">18 / 18</div>
+                                <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                                <div class="view"><i class="fa fa-eye"></i> '. $row->views .'</div>
+                            </div>
+                            <div class="product__item__text">
+                                <ul>
+                                    <li>Active</li>
+                                    <li>Movie</li>
+                                </ul>
+                                <h5 style="text-transform: uppercase;"><a href="anime-details.php?anime='. $row->id .'">'. $row->name .'</a></h5>
+                            </div>
+                        </div>
+                    </div>
+                ';
+                    }
+                ?>                            
                     <!-- Adicione mais linhas conforme necessário -->
                 </tbody>
             </table>
