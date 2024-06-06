@@ -33,7 +33,7 @@
                 while($row = $rs->fetch(PDO::FETCH_OBJ)){
                     echo '
                     <tr class="border-b">
-                    <td class="py-2 px-4"><img class="w-20 h-20 object-cover" src="'. $row->imagem .'" alt="João Silva"></td>
+                    <td class="py-2 px-4"><img class="w-20 h-20 object-cover" src="'. $row->imagem .'" alt="'.$row->nome.'"></td>
                    <td class="py-2 px-4 text-sm text-gray-700">'. $row->nome .'</td>
                    <td class="py-2 px-4 text-sm text-gray-700">'. $row->email .'</td>
                    <td class="py-2 px-4 text-sm text-gray-700">'. $row->telefone.'</td>
