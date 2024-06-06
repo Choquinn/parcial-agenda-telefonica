@@ -31,28 +31,16 @@
 
                 $rs = $con->query("SELECT * FROM agenda");
                 while($row = $rs->fetch(PDO::FETCH_OBJ)){
-                
                     echo '
-                    <div class="col-lg-4 col-md-6 col-sm-6">
-                        <div class="prjoduct__item">
-                            <div class="product__item__pic set-bg" data-setbg=" '. $row->cover .'">
-                                <div class="ep">18 / 18</div>
-                                <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                <div class="view"><i class="fa fa-eye"></i> '. $row->views .'</div>
-                            </div>
-                            <div class="product__item__text">
-                                <ul>
-                                    <li>Active</li>
-                                    <li>Movie</li>
-                                </ul>
-                                <h5 style="text-transform: uppercase;"><a href="anime-details.php?anime='. $row->id .'">'. $row->name .'</a></h5>
-                            </div>
-                        </div>
-                    </div>
-                ';
-                    }
+                    <tr class="border-b">
+                    <td class="py-2 px-4"><img class="w-20 h-20 object-cover" src="'. $row->imagem .'" alt="João Silva"></td>
+                   <td class="py-2 px-4 text-sm text-gray-700">'. $row->nome .'</td>
+                   <td class="py-2 px-4 text-sm text-gray-700">'. $row->email .'</td>
+                   <td class="py-2 px-4 text-sm text-gray-700">'. $row->telefone.'</td>
+                    </tr>
+                    ';
+                }
                 ?>                            
-                    <!-- Adicione mais linhas conforme necessário -->
                 </tbody>
             </table>
         </div>
